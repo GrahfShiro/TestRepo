@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 public class Projects {
 
+	private static int projectCount = 0;
 	private int id;
 	private String projectName;
 	private Users[] projectMembers;
@@ -15,8 +16,11 @@ public class Projects {
 	private DefaultDirectedGraph<Activities,DefaultEdge> activityGraph;
 	private ArrayList<Activities> activityList;
 
-	public Projects(int id, String projectName, Users[] projectMembers, String date, DefaultDirectedGraph<Activities,DefaultEdge> activityGraph, ArrayList<Activities> activityList) {
-		this.id = id;
+	public Projects(String projectName, Users[] projectMembers,
+			String date, DefaultDirectedGraph<Activities,DefaultEdge> activityGraph,
+			ArrayList<Activities> activityList) {
+		
+		this.id = projectCount++;
 		this.projectName = projectName;
 		this.projectMembers = projectMembers;
 		this.date = date;
@@ -24,8 +28,8 @@ public class Projects {
 		this.activityList = activityList;
 	}
 	
-	public Projects(int id, String projectName, Users[] projectMembers, String date) {
-		this.id = id;
+	public Projects(String projectName, Users[] projectMembers, String date) {
+		this.id = projectCount++;
 		this.projectName = projectName;
 		this.projectMembers = projectMembers;
 		this.date = date;
