@@ -13,10 +13,9 @@ import java.awt.Toolkit;
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 
-import graphview_components.*;
-import listview_components.ActivityListPane;
-import listview_components.ProjectListPane;
-import saver_loader.DataResource;
+import swing_components.ActivityPanel;
+import swing_components.TabPanel;
+import swing_components.*;
 
 public class ClientLauncher {
 	
@@ -24,9 +23,6 @@ public class ClientLauncher {
 	public static ActivityPanel activityPane;
 	public static MenuBar menuBar;
 	public static ProjectPanel projectPane;
-	
-	public static ActivityListPane activityListPane;
-	public static ProjectListPane projectListPane;
 
 	public static JFrame clientFrame;
 	public static JFrame loginFrame;
@@ -55,6 +51,7 @@ public class ClientLauncher {
 			menuBar = new MenuBar();
 			clientFrame.setJMenuBar(menuBar.getMenuBar());
 			
+			clientFrame.getContentPane().setBackground(Color.black);
 					
 			loginFrame = new JFrame("Login");
 			loginFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -71,13 +68,7 @@ public class ClientLauncher {
 			tabPane = new TabPanel();
 			projectPane = new ProjectPanel();
 			activityPane = new ActivityPanel();
-			
-			projectListPane = new ProjectListPane();
-			activityListPane = new ActivityListPane();
-			
-			
-			
-			if(!DataResource.listView){
+				
 			//Constraints for tabPanel
 			c.insets = new Insets(0 ,0, 4, 0);
 			c.weightx = 1;
@@ -116,28 +107,7 @@ public class ClientLauncher {
 			
 			//Add Activity Panel
 			clientFrame.add(activityPane,c);
-			}			
-			else{
-				//----------------------- LIST VIEW--------------------------------------------------------------------------
 				
-				c.gridx = 0;
-				c.gridy = 0;
-				c.weightx = 1;
-				c.weighty = 1;
-				c.fill = GridBagConstraints.BOTH;
-				
-				clientFrame.add(projectListPane, c);
-				
-				c.gridx =1;
-				c.weightx = 5;
-				c.insets = new Insets(0,10,0,0);
-
-				clientFrame.add(activityListPane, c);
-				
-				
-				
-				
-			}
 	}
 		});
 		

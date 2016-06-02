@@ -11,32 +11,37 @@ public class Projects {
 	private static int projectCount = 0;
 	private int id;
 	private String projectName;
-	private Users[] projectMembers;
+	private ArrayList<Users> userList;
 	private String date;
 	private DefaultDirectedGraph<Activities,DefaultEdge> activityGraph;
 	private ArrayList<Activities> activityList;
 
-	public Projects(String projectName, Users[] projectMembers,
-			String date, DefaultDirectedGraph<Activities,DefaultEdge> activityGraph,
-			ArrayList<Activities> activityList) {
-		
-		this.id = projectCount++;
-		this.projectName = projectName;
-		this.projectMembers = projectMembers;
-		this.date = date;
-		this.activityGraph = activityGraph;
-		this.activityList = activityList;
-	}
 	
-	public Projects(String projectName, Users[] projectMembers, String date) {
+	public Projects(String projectName, ArrayList<Users> userList, String date) {
 		this.id = projectCount++;
 		this.projectName = projectName;
-		this.projectMembers = projectMembers;
+		this.userList = userList;
 		this.date = date;
 		this.activityGraph = new DefaultDirectedGraph<Activities,DefaultEdge>(DefaultEdge.class);
 		this.activityList = new ArrayList<Activities>();
 	}
 
+	public Projects(String projectName, ArrayList<Users> userList, String date, int projectID, int managerID,
+			String desription, double budget, String date3) {
+		this.projectName = projectName;
+		this.userList = userList;
+		this.date = date;
+		this.activityGraph = new DefaultDirectedGraph<Activities,DefaultEdge>(DefaultEdge.class);
+		this.activityList = new ArrayList<Activities>();
+	}
+	
+	public static int getProjectCount() {
+		return projectCount;
+	}
+
+	public static void setProjectCount(int projectCount) {
+		Projects.projectCount = projectCount;
+	}
 	public int getId() {
 		return id;
 	}
@@ -53,12 +58,12 @@ public class Projects {
 		this.projectName = projectName;
 	}
 
-	public Users[] getProjectMembers() {
-		return projectMembers;
+	public ArrayList<Users>  getProjectMembers() {
+		return userList;
 	}
 
-	public void setProjectMembers(Users[] projectMembers) {
-		this.projectMembers = projectMembers;
+	public void setProjectMembers(ArrayList<Users>  userList) {
+		this.userList = userList;
 	}
 
 	public String getDate() {

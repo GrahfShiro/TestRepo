@@ -4,16 +4,16 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.Insets;
 import java.awt.Toolkit;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
+import javax.swing.ButtonGroup;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
+import javax.swing.JRadioButton;
 
 @SuppressWarnings("serial")
 public class ActivityPanel extends JPanel {
@@ -21,6 +21,9 @@ public class ActivityPanel extends JPanel {
 	JLabel title;
 	JLabel name;
 	JLabel description;
+	JRadioButton addButton;
+	JRadioButton dependencyButton;
+	ButtonGroup group;
 	
 	float fontScalar = Toolkit.getDefaultToolkit().getScreenSize().height/1800f;
 
@@ -29,42 +32,61 @@ public class ActivityPanel extends JPanel {
 		 
 		 
 		//Set Label variables and fonts    - TODO make variables class variables for later access
-		 title = new JLabel("Activity Interface");
+		title = new JLabel("Activity Interface");
+		description = new JLabel("Activity Description Here");
+		name = new JLabel("Activity Title Here");
+		addButton = new JRadioButton("Add Activity Mode");
+		dependencyButton = new JRadioButton("Add Depedency Mode");
+			
 		 
 		Font fs30 = title.getFont().deriveFont(fontScalar*30f);
 		Font fs50 = title.getFont().deriveFont(fontScalar*50f);
-
+		Font fs25 = title.getFont().deriveFont(fontScalar*25f);
 
 		title.setFont(fs50);
-		 
-		name = new JLabel("Activity Title Here");
-		description = new JLabel("Activity Description Here");
-		
 		name.setFont(fs30);
 		description.setFont(fs30);
+		addButton.setFont(fs25);
+		dependencyButton.setFont(fs25);
 		
+		//Connect the Radio Buttons
 		
+		group = new ButtonGroup();
+		group.add(addButton);
+		group.add(dependencyButton);
+
+		addButton.setOpaque(false);
+		dependencyButton.setOpaque(false);
 		 //Set the Layout
 		 this.setLayout(new GridBagLayout());
-		 GridBagConstraints constraints = new GridBagConstraints();
+		 GridBagConstraints c = new GridBagConstraints();
 		 
 		
-		 constraints.gridx = 0;
-		 constraints.gridy = 0;
-		 constraints.weightx = 1;
-		 constraints.weighty = 1;
-		 constraints.gridwidth = 4;
-		 constraints.anchor = GridBagConstraints.NORTHWEST;
-		 constraints.insets = new Insets(0,10,0,0);
+		 c.gridx = 0;
+		 c.gridy = 0;
+		 c.weightx = 1;
+		 c.weighty = 1;
+		 c.gridwidth = 1;
+		 c.ipadx = 10;
+		 c.anchor = GridBagConstraints.NORTH;
 		 
-		
-		 this.add(title, constraints);
+		 this.add(title, c);
 		 
-		 constraints.fill = GridBagConstraints.HORIZONTAL;
-		 constraints.gridwidth = 1;
-	 
+		 c.gridx = 1;
+		 c.gridy = 0;
+		 c.weightx = 1;
+		 c.weighty = 1;
+		 c.ipady = 30;
+		 c.anchor = GridBagConstraints.NORTH;
 		 
+		 this.add(addButton, c);
 		 
+		 c.gridx = 2;
+		 c.gridy = 0;
+		 c.weightx = 1;
+		 c.weighty = 1;
+		 
+		 this.add(dependencyButton, c);
 	}
 	
 	@Override
@@ -81,4 +103,22 @@ public class ActivityPanel extends JPanel {
 	
 		g.drawImage(blurBackground, 0, 0, getWidth(), getHeight(), null);
 		}
+
+	public JRadioButton getAddButton() {
+		return addButton;
+	}
+
+	public void setAddButton(JRadioButton addButton) {
+		this.addButton = addButton;
+	}
+
+	public JRadioButton getDependencyButton() {
+		return dependencyButton;
+	}
+
+	public void setDependencyButton(JRadioButton dependencyButton) {
+		this.dependencyButton = dependencyButton;
+	}
+	
+	
 }
