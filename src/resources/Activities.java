@@ -2,6 +2,7 @@ package resources;
 
 public class Activities {
 
+	private static int activityCount = 0;
 	private int id;
 	private String description;
 	private double duration;
@@ -23,8 +24,8 @@ public class Activities {
 		this.maxDuration = -1;
 	}
 	
-	public Activities(int id, String description, double duration, double xpos, double ypos) {
-		this.id = id;
+	public Activities(String description, double duration, double xpos, double ypos) {
+		this.id = activityCount++;
 		this.description = description;
 		this.duration = duration;
 		this.xpos = xpos;
