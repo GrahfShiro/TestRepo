@@ -1,6 +1,9 @@
 package swing_components;
 
 import java.awt.event.*;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.swing.JFrame;
 import javax.swing.JMenu;
@@ -9,6 +12,8 @@ import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 
 import driver.ClientLauncher;
+import resources.Projects;
+import saver_loader.DataResource;
 
 @SuppressWarnings("serial")
 public class MenuBar extends JMenuBar{
@@ -94,26 +99,26 @@ public class MenuBar extends JMenuBar{
 		return menuBar;
 	}
 
-	class MenuItemListener implements ActionListener {
+	private class MenuItemListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {            
            
         	//add new project
         	if(e.getActionCommand()== "New Project")
         	{
-        		JFrame addProjectFrame = new JFrame();
-				
-				
+        		JFrame addProjectDialogueFrame = new JFrame();
+							
 				String message = "Please enter the project name.";
+				String projectName = (String)JOptionPane.showInputDialog(addProjectDialogueFrame, message,"Add New Project",JOptionPane.PLAIN_MESSAGE,null,null,null);
+						
+				DateFormat df = new SimpleDateFormat("dd/MM/yy HH:mm:ss");
+				Date dateobj = new Date();
+				String date = df.format(dateobj).toString();
 				
-				//get project name
-				String s = (String)JOptionPane.showInputDialog(addProjectFrame, message,"Add New Project",JOptionPane.PLAIN_MESSAGE,null,null,null);
-				
-				System.out.println(s);
-				
-				//TODO Create project object with name attribute and add it to database on save
+				Projects newProject = new Projects(projectName, null, date); //no user list implentation
+				DataResource.projectList.add(newProject);		
 				
 				//add tab with project name
-				ClientLauncher.tabPane.addProjectTab(s);
+				ClientLauncher.tabPane.addProjectTab(projectName, newProject.getId());
         	}
         	
         	if(e.getActionCommand() == "Exit")
