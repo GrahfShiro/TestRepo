@@ -16,6 +16,8 @@ public class DataResource {
 	
 	public static Users currentUser; //this is the currently logged in user for which the projetList will be populated
 	
+	public static Projects selectedProject;
+	
 	
 	public static Projects getProjectbyProjectId(int projectId){
 		
@@ -26,6 +28,16 @@ public class DataResource {
 		}
 		return null;
 	}
+	
+public static Projects getProjectbyProjectName(String name){
+        
+        for(Projects project: projectList){
+            
+            if(project.getProjectName() == name)
+                return project;
+        }
+        return null;
+    }
 	
 	public static void loadFromDB()
 	{

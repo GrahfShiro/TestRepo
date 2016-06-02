@@ -111,7 +111,7 @@ public class Activity_form extends JFrame {
 	}
 	
 	private void SaveAction () {
-		Activities newActivity = new Activities(DescField.getText(), Double.parseDouble(DuraField.getText()), 0.0, 0.0);
+		Activities newActivity = new Activities(DescField.getText(), Double.parseDouble(DuraField.getText()), LabField.getText());
 		System.exit(0);
 	}
 	

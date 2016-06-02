@@ -55,11 +55,12 @@ public class DrawPanel extends JPanel implements MouseListener {
 				"Activity Duration", JOptionPane.PLAIN_MESSAGE, null, null, null);
 		 
 		
+		String label = "";
 		int duration = Integer.parseInt(activityDuration);
 		Point clickPoint = new Point(arg0.getPoint());
 		
 		//Create the activity
-		Activities activity = new Activities(activityDescription, duration, clickPoint.x, clickPoint.y); 
+		Activities activity = new Activities(activityDescription, duration, label); 
 		
 		int currentProjectId = ClientLauncher.tabPane.getTabPanel().getSelectedIndex();
 		

@@ -77,47 +77,7 @@ public class ClientLauncher {
 			
 			
 			
-			if(!DataResource.listView){
-			//Constraints for tabPanel
-			c.insets = new Insets(0 ,0, 4, 0);
-			c.weightx = 1;
-			c.weighty = 3;
-			c.gridx = 0;
-			c.gridy = 0;
-			c.gridwidth = 2;
-			c.fill = GridBagConstraints.BOTH;
-			//c.gridwidth = GridBagConstraints.BOTH;
-			
-			//Add Tab Panel
-			clientFrame.add(tabPane, c);
-			
-			//Constraints for ProjectPanel
-			c.insets = new Insets(0 ,0, 0, 5);
-			c.weightx = 1;
-			c.weighty = 1;
-			c.gridx = 0;
-			c.gridy = 1;
-			c.gridwidth = 1;
-			c.fill = GridBagConstraints.BOTH;
-			//c.gridwidth = GridBagConstraints.RELATIVE;
-			
-			//Add Project Panel
-			clientFrame.add(projectPane, c);
-			
-			//Constraints for Activity Panel
-			c.insets = new Insets(1,0,0,0);
-			c.weightx = 1;
-			c.weighty = 1;
-			c.gridx = 1;
-			c.gridy = 1;
-			c.gridwidth = 1;
-			c.fill = GridBagConstraints.BOTH;
-			//c.gridwidth = GridBagConstraints.REMAINDER;
-			
-			//Add Activity Panel
-			clientFrame.add(activityPane,c);
-			}			
-			else{
+	
 				//----------------------- LIST VIEW--------------------------------------------------------------------------
 				
 				c.gridx = 0;
@@ -137,7 +97,7 @@ public class ClientLauncher {
 				
 				
 				
-			}
+			
 	}
 		});
 		
