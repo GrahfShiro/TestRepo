@@ -12,6 +12,8 @@ import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 
+import graphview_components.DrawPanel;
+
 @SuppressWarnings("serial")
 public  class TabPanel extends JPanel {
 	

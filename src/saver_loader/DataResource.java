@@ -130,7 +130,7 @@ public static Projects getProjectbyProjectName(String name){
         			
         		}
         		//creates projects with no activities
-        		projectList.add(new Projects(projectName,userList,date,projectID,managerID,desription,budget,date));
+        		//projectList.add(new Projects(projectName,userList,date,projectID,managerID,desription,budget,date));
         		//query activy relation table to get activies associated with project
         		//for each activity query activity table relation to get dependent activities
         	
