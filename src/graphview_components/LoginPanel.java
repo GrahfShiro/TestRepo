@@ -18,6 +18,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 import driver.ClientLauncher;
+import listview_components.ProjectListPane;
 import resources.Users;
 import saver_loader.DataResource;
 
@@ -155,6 +156,7 @@ public class LoginPanel extends JPanel{
 	    					result.getString(5),result.getInt(1),result.getString(6));
 	    			
 	    			DataResource.loadFromDB();
+	    			ProjectListPane.updateList();
 	    			
 	    			try {
 	    			    Thread.sleep(1000);                 //1000 milliseconds is one second.

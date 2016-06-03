@@ -23,13 +23,18 @@ public class Projects {
 	private String description;
 
 	
-	public Projects(String projectName, ArrayList<Users> userList, String date) {
+		
+	public Projects(String projectName, ArrayList<Users> userList, String date, int managerID,
+			String description, double budget) {
 		this.id = projectCount++;
 		this.projectName = projectName;
 		this.userList = userList;
 		this.date = date;
 		this.activityGraph = new DefaultDirectedGraph<Activities,DefaultEdge>(DefaultEdge.class);
 		this.activityList = new ArrayList<Activities>();
+		this.managerID = managerID;
+		this.budget = budget;
+		this.description = description;
 	}
 
 	public Projects(String projectName, ArrayList<Users> userList, String date, int projectID, int managerID,
