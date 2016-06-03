@@ -10,10 +10,8 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
-import javax.swing.SwingUtilities;
 
 import driver.ClientLauncher;
-import listview_components.Project_form;
 import resources.Projects;
 import saver_loader.DataResource;
 
@@ -107,20 +105,21 @@ public class MenuBar extends JMenuBar{
         	//add new project
         	if(e.getActionCommand()== "New Project")
         	{
-        		SwingUtilities.invokeLater(new Runnable(){
-
-					@Override
-					public void run() {
+        		JFrame addProjectDialogueFrame = new JFrame();
+							
+				String message = "Please enter the project name.";
+				String projectName = (String)JOptionPane.showInputDialog(addProjectDialogueFrame, message,"Add New Project",JOptionPane.PLAIN_MESSAGE,null,null,null);
 						
-						Project_form frame = new Project_form();
-						frame.setVisible(true);
-						
-					}
-        			       			
-        		});
-        		
-        		
-        		}
+				DateFormat df = new SimpleDateFormat("dd/MM/yy HH:mm:ss");
+				Date dateobj = new Date();
+				String date = df.format(dateobj).toString();
+				
+				Projects newProject = new Projects(projectName, null, date); //no user list implentation
+				DataResource.projectList.add(newProject);		
+				
+				//add tab with project name
+				ClientLauncher.tabPane.addProjectTab(projectName, newProject.getId());
+        	}
         	
         	if(e.getActionCommand() == "Exit")
         	{

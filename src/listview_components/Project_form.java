@@ -7,16 +7,12 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import driver.ClientLauncher;
 import resources.Projects;
-import resources.Users;
-import saver_loader.DataResource;
 
 import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 import java.awt.Color;
 import javax.swing.JTextField;
 import javax.swing.border.BevelBorder;
@@ -28,8 +24,23 @@ public class Project_form extends JFrame {
 	private JTextField NameField;
 	private JTextField DescField;
 	private JTextField BudgetField;
+	private boolean edit;
 
-	
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Project_form frame = new Project_form();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
 
 	/**
 	 * Create the frame.
@@ -82,7 +93,6 @@ public class Project_form extends JFrame {
 		contentPane.add(btnCancel);
 		
 		JButton btnSave = new JButton("Save");
-		ButtonListener buttonSave = new ButtonListener();
 		btnSave.setBounds(130, 183, 89, 23);
 		btnSave.addActionListener(new ButtonListener());
 		
@@ -92,33 +102,16 @@ public class Project_form extends JFrame {
 	}
 	
 	private void SaveAction () {
-        ArrayList<Users> userList = new ArrayList<Users>();
-        userList.add(DataResource.currentUser);
-        Projects newProject = new Projects(NameField.getText(), userList, "",1,
-        		DescField.getText(), Double.parseDouble(BudgetField.getText()));
-        DataResource.projectList.add(newProject);
-        
-        String name = NameField.getText();
-       
-        ProjectListPane.updateList(name);
-        this.dispose();
-        
-        
-    }
+		Projects newProject = new Projects(NameField.getText(), null, BudgetField.getText());
+		System.exit(0);
+	}
+		
 	
 	private class ButtonListener implements ActionListener {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			SaveAction();
-			
-			
-			//if(savebutton.getParent().getClass() == new Project_form().getClass())
-				//System.out.print(true);
-			
-			
-			
-			
+			SaveAction();	
 		}
 	}
 	

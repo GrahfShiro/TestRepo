@@ -4,7 +4,6 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Toolkit;
 
-import javax.swing.DefaultListModel;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
@@ -19,44 +18,44 @@ import saver_loader.DataResource;
 @SuppressWarnings("serial")
 public class ProjectListPane extends JPanel{
 
-	public static JList<String> list;
+	public JList<String> list;
 	public JScrollPane scrollpane;
 	
-	public static JLabel title = new JLabel();
-	public static DefaultListModel<String> listModel = new DefaultListModel<String>();
-	
+	public JLabel title = new JLabel();
 	float fontScalar = Toolkit.getDefaultToolkit().getScreenSize().height/1800f;
 
 	public ProjectListPane(){
 		
-		//Set the Layout of the Panel
 		this.setLayout(new GridBagLayout());
 		GridBagConstraints c = new GridBagConstraints();
 	
-		//Create an array of existing project Names			
-		String[] projectNames = new String[DataResource.projectList.size()];
-		for(int i = 0; i < DataResource.projectList.size(); i++)
-		projectNames[i] = DataResource.projectList.get(i).getProjectName();
+		String[] projectNames = new String[100];
 		
-			
-		for(int i = 0; i < DataResource.projectList.size(); i++){
-			listModel.addElement(projectNames[i]);
+		for(int i = 0; i< 100; i++){
+			Integer integer = new Integer(i);
+			projectNames[i] = integer.toString();
 		}
-		list = new JList(listModel);
-		//list = new JList<String>(projectNames);
+		
+		//This will be the real code later
+//		String[] projectNames = new String[DataResource.projectList.size()];
+	//	for(int i = 0; i < DataResource.projectList.size(); i++)
+		//	projectNames[i] = DataResource.projectList.get(i).getProjectName();
+		
+		list = new JList<String>(projectNames);
 		list.setFont(list.getFont().deriveFont(fontScalar*30f));
 	    list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
 	    list.addListSelectionListener(new ListSelectionListener() {
-	        
-	    	public void valueChanged(ListSelectionEvent e) {
+	        public void valueChanged(ListSelectionEvent e) {
 	         	        	
 	        	DataResource.selectedProject = DataResource.getProjectbyProjectName(list.getSelectedValue());
-	        	ActivityListPane.updateTable(DataResource.selectedProject);
 	        	
 	        }
 	      });
-					    
+			
+		
+	    
+
 		scrollpane = new JScrollPane(list);
 		
 		c.weightx =1;
@@ -77,12 +76,5 @@ public class ProjectListPane extends JPanel{
 		
 	}
 	
-	public static void updateList(String projectName){
-		System.out.println("i am here");
-		
-		listModel.addElement(projectName);
-		System.out.println(listModel.size());
-		
-	}
 	
 }

@@ -18,6 +18,8 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 import driver.ClientLauncher;
+import resources.Users;
+import saver_loader.DataResource;
 
 import java.sql.*;
 
@@ -138,7 +140,7 @@ public class LoginPanel extends JPanel{
 	        
 	        try{
 	        	connection = DriverManager.getConnection("jdbc:sqlite:ultimate_sandwich.db");
-	        	ps = connection.prepareStatement("SELECT username, password FROM users WHERE username = ? AND password = ?");
+	        	ps = connection.prepareStatement("SELECT * FROM users WHERE username = ? AND password = ?");
 	        	
 	        	ps.setString(1, usernameField.getText());
 	            ps.setString(2, String.valueOf(passwordField.getPassword()));
@@ -146,7 +148,14 @@ public class LoginPanel extends JPanel{
 	            if(result.next()){
 	            	
 	            	authorizationStatus.setText("login successful");
-	    			authorizationStatus.paintImmediately(authorizationStatus.getVisibleRect());			
+	    			authorizationStatus.paintImmediately(authorizationStatus.getVisibleRect());
+	    			
+	    			//create user so that project list 
+	    			DataResource.currentUser = new Users(result.getString(4),result.getString(2),result.getString(3),
+	    					result.getString(5),result.getInt(1),result.getString(6));
+	    			
+	    			DataResource.loadFromDB();
+	    			
 	    			try {
 	    			    Thread.sleep(1000);                 //1000 milliseconds is one second.
 	    			} catch(InterruptedException ex) {
