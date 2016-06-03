@@ -11,7 +11,7 @@ import resources.Activities;
 
 public class TestDriver {
 	
-
+// only used for testing
 	
 /*
 	public static void main(String[] args) {
