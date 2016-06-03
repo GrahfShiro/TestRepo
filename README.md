@@ -6,8 +6,11 @@ username: mmontef
 pass: 123
 
 If you are having errors due to missing libraries, go to "build path" and make sure that the following libraries are linked:
+
 jgrapht-ext-0.9.2-uber
+
 sqlite-jdbc-3.8.11.2
+
 
 ******
 Note the following folder structure:
@@ -28,6 +31,7 @@ swing_Components: Contains swing classes used to make GUI objects.
 ******
 
 Where we currently stand:
+
 As per Tuesday's meeting and the majority's decision, we have scrapped the physical graph representation of project activities in lieu of a table-like view.
 
 Currently the database is set up correctly and loading from the database is working as it should.
@@ -48,11 +52,13 @@ All the data is being loaded and stored properly. The challenge is displaying it
 Here is a breakdown of the main object structure:
 
 Users
+
 For now we have one type of user: a Manager.
 Users have a userName, firstName, lastName, password, ID and type (an enum, either ADMIN, MANAGER or MEMBER).
 The primary key in the database for users is ID.
 
 Activities
+
 Activities have an id, label, description, duration, xpos, ypos, earliestStart, earliestFinish, lastestStart, lastestFinish, activityFloat and maxDuration. All attributes after duration are not used in this iteration, but we kept them in for future use.
 Primary key in the database for activities is ID.
 They are linked to Projects in the database through a project_activities_relationship table, where each activity ID is in a tuple with a Project ID.
@@ -61,6 +67,7 @@ Activity ID's are set by automatically incrementing a static variable upon creat
 This variable is set to the current max Activity ID stored in the database, to ensure it is always a new number.
 
 Projects
+
 This class is where all the magic happens
 Projects have an ID, projectName, ArrayList of users, date, Connected Directed Graph of Activities, an ArrayList of Activities, managerID, budget and description.
 Projects hold a DefaultDirectedGraph of Activities connected by DefaultEdges. This structure holds all the Activities associated with a project, as well as the relationships between each activity.
