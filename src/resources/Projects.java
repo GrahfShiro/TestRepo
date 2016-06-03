@@ -15,19 +15,38 @@ public class Projects {
 	private String date;
 	private DefaultDirectedGraph<Activities,DefaultEdge> activityGraph;
 	private ArrayList<Activities> activityList;
+	private int managerID;
+	private Object description;
+	private int budget;
 
 	
-	public Projects(String projectName, ArrayList<Users> userList, String date) {
-		this.id = projectCount++;
-		this.projectName = projectName;
-		this.userList = userList;
-		this.date = date;
-		this.activityGraph = new DefaultDirectedGraph<Activities,DefaultEdge>(DefaultEdge.class);
-		this.activityList = new ArrayList<Activities>();
-	}
-
+	public Projects() {
+        this.id = -1;
+        this.projectName = null;
+        this.userList = null;
+        this.managerID = -1;
+        this.date = null;
+        this.description = null;
+        this.budget = -1;
+        this.activityGraph = null;
+        this.activityList = null;
+    }
+	
+	public Projects(String projectName, ArrayList<Users> userList, String date, int managerID,
+            String description, double budget) {
+        this.id = projectCount++;
+        this.projectName = projectName;
+        this.userList = userList;
+        this.managerID = managerID;
+        this.date = date;
+        this.description = description;
+        this.budget = (int) budget;
+        this.activityGraph = new DefaultDirectedGraph<Activities,DefaultEdge>(DefaultEdge.class);
+        this.activityList = new ArrayList<Activities>();
+    }
+	
 	public Projects(String projectName, ArrayList<Users> userList, String date, int projectID, int managerID,
-			String desription, double budget, String date3) {
+			String desription, double budget) {
 		this.projectName = projectName;
 		this.userList = userList;
 		this.date = date;
